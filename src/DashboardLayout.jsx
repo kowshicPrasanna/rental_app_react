@@ -115,7 +115,7 @@ function Dashboard() {
 
         {/* Centered Content */}
         <div className="flex flex-col items-center justify-center">
-          <p className="lg:m-[10rem] text-white text-[5rem] text-center font-bold">
+          <p className="pb-20 lg:m-[8rem] lg:pb-0 text-white text-[5rem] text-center font-bold">
             Ride with style
           </p>
           <button
