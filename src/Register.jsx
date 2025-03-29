@@ -54,7 +54,7 @@ function Register() {
       style={{ backgroundImage: "url('/car_rbg.jpg')" }}
     >
       {/* Register Form Container */}
-      <div className="bg-cyan-50 bg-opacity-80 p-10 rounded-lg shadow-lg w-96 mr-24">
+      <div className="bg-cyan-50 bg-opacity-80 p-10 rounded-lg shadow-lg w-88 mx-auto lg:mr-24">
         <h2 className="text-3xl font-semibold text-black text-center mb-6">
           YO Cars Registration
         </h2>
