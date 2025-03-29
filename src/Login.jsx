@@ -61,7 +61,7 @@ function Login() {
       style={{ backgroundImage: "url('/car_bg.jpg')" }}
     >
       {/* Login Form Container */}
-      <div className="bg-cyan-50 bg-opacity-80 p-10 rounded-lg shadow-lg w-96 ml-24 mr-auto">
+      <div className="bg-cyan-50 bg-opacity-80 p-10 rounded-lg shadow-lg w-96 mx-auto lg:ml-24 mr-auto">
         <h2 className="text-3xl font-semibold text-black text-center mb-6">
           Zulu Cars
         </h2>
