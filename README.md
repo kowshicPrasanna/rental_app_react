@@ -1,12 +1,51 @@
-# React + Vite
+# About the Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a full-stack vehicle rental platform built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The platform allows users to browse, book, and manage vehicle rentals, while owners can oversee bookings, manage vehicles, and handle payments.
 
-Currently, two official plugins are available:
+# Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+User authentication (JWT-based login & signup)
 
-## Expanding the ESLint configuration
+Vehicle listings with search and filters
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Booking system with real-time availability
+
+Payment integration (Stripe/Razorpay)
+
+User dashboard for rental history & profile management
+
+Owner dashboard for vehicle and user management
+
+Review & rating system
+
+# Tech Stack
+
+Frontend:
+
+React.js
+
+Tailwind CSS
+
+Formik for form handling
+
+
+Backend:
+
+Node.js with Express.js
+
+MongoDB with Mongoose
+
+JWT authentication
+
+
+Deployment:
+
+Frontend: Netlify
+
+Backend: Render
+
+Database: MongoDB Atlas
+
+# To use this web app follow the below link
+
+https://zulu-cars.netlify.app/
