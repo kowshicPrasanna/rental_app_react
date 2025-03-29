@@ -112,7 +112,7 @@ const VehicleList = () => {
             className="p-4 bg-white rounded-lg shadow-lg border border-gray-200"
           >
             <img
-              src={`http://localhost:3000/uploads/${vehicle.vehicleImage}`}
+              src={vehicle.vehicleImage}
               alt={vehicle.vehicleId}
               className="w-full h-40 object-cover rounded-md mb-4"
             />
