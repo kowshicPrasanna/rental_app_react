@@ -69,11 +69,12 @@ function BookingHistory() {
                 <strong>Location:</strong> {booking.location}
               </p>
               <p>
-                <strong>Rental Date:</strong>
-                {booking.rentalDate}
+                <strong>Rental Date:</strong>{" "}
+                {new Date(booking.rentalDate).toLocaleDateString()}
               </p>
               <p>
-                <strong>Return Date:</strong> {booking.returnDate}
+                <strong>Return Date:</strong>{" "}
+                {new Date(booking.returnDate).toLocaleDateString()}
               </p>
               <p>
                 <strong>Total Days:</strong> {booking.totalDays}
