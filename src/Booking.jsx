@@ -140,13 +140,15 @@ const Booking = () => {
                 <label className="block text-sm font-semibold text-gray-700">
                   Location
                 </label>
-                <input
-                  type="text"
+                <select
                   className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:ring-2 focus:ring-black"
-                  placeholder="Enter location"
                   value={location}
                   onChange={(e) => setCustomerLocation(e.target.value)}
-                />
+                >
+                  <option value="">Enter location</option>
+                  <option value="Chennai">Chennai</option>
+                  <option value="Trichy">Trichy</option>
+                </select>
               </div>
 
               <div>
