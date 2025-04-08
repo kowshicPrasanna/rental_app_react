@@ -170,7 +170,7 @@ function AddVehicle() {
                 <option value="Thanjavur">Thanjavur</option>
                 <option value="Theni">Theni</option>
                 <option value="Thoothukudi">Thoothukudi</option>
-                <option value="Tiruchirappalli">Tiruchirappalli</option>
+                <option value="Trichy">Trichy</option>
                 <option value="Tirunelveli">Tirunelveli</option>
                 <option value="Tirupathur">Tirupathur</option>
                 <option value="Tiruppur">Tiruppur</option>
