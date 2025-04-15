@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function Register() {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [successMessage, setSuccessMessage] = useState("");
 
@@ -19,7 +20,7 @@ function Register() {
       if (!values.email) {
         errors.email = "Required";
       } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{3,3}$/i.test(values.email)
       ) {
         errors.email = "Invalid email address";
       }
@@ -32,8 +33,7 @@ function Register() {
     },
     onSubmit: async (values) => {
       try {
-        const response = await axios.post(
-          "https://rental-app-node.onrender.com/users/register",
+        const response = await axios.post(`${BASE_URL}/users/register`,
           values
         );
         if (response.status === 200) {

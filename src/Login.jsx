@@ -2,7 +2,9 @@ import { useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import axios from "axios";
 
+
 function Login() {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const formik = useFormik({
     initialValues: {
@@ -28,7 +30,7 @@ function Login() {
     onSubmit: async (values) => {
       try {
         const loginRep = await axios.post(
-          "https://rental-app-node.onrender.com/users/login",
+          `${BASE_URL}/users/login`,
           values
         );
         if (loginRep.status === 200) {
@@ -50,7 +52,12 @@ function Login() {
           }
         }
       } catch (error) {
-        console.log(error);
+        if (error.response && error.response.status === 400) {
+          alert(error.response.data.message || "Invalid credentials");
+        } else {
+          console.error("Login Error:", error);
+          alert("Something went wrong. Please try again.");
+        }
       }
     },
   });

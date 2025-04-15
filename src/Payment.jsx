@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const Payment = () => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const paymentlocation = useLocation();
   const navigate = useNavigate();
   const bookingDetails = paymentlocation.state;
@@ -22,7 +23,7 @@ const Payment = () => {
 
       // 1️⃣ Call Backend API to Create Order
       const response = await axios.post(
-        "https://rental-app-node.onrender.com/payment/create-order",
+        `${BASE_URL}/payment/create-order`,
         { amount: amountInPaise }
       );
 
@@ -51,7 +52,7 @@ const Payment = () => {
           );
           try {
             const verifyResponse = await axios.post(
-              "https://rental-app-node.onrender.com/payment/verify-payment",
+              `${BASE_URL}/payment/verify-payment`,
               {
                 razorpay_order_id: response.razorpay_order_id,
                 razorpay_payment_id: response.razorpay_payment_id,

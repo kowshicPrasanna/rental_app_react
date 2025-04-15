@@ -10,6 +10,7 @@ import img3 from "/dashboard_car_3.jpg";
 const carImages = [img1, img2, img3];
 
 function Dashboard() {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
   const navigate = useNavigate();
   const [currentImage, setCurrentImage] = useState(0);
   const [reviews, setReviews] = useState([]);
@@ -21,11 +22,11 @@ function Dashboard() {
   useEffect(() => {
     const fetchBooking = async () => {
       try {
-        const response = await axios.get(`https://rental-app-node.onrender.com/booking`, {
+        const response = await axios.get(`${BASE_URL}/booking`, {
           params: { email },
         });
         if (response.data.length > 0) {
-          setBooking(response.data[0]); // Assuming the first active booking is needed
+          setBooking(response.data);
         }
       } catch (error) {
         console.error("Error fetching booking:", error);
@@ -39,7 +40,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await axios.get("https://rental-app-node.onrender.com/review"); // Adjust if needed
+        const response = await axios.get(`${BASE_URL}/review`);
         setReviews(response.data);
       } catch (error) {
         console.error("Error fetching reviews:", error);
@@ -56,9 +57,7 @@ function Dashboard() {
     return () => clearInterval(interval);
   }, []);
 
-  // Handle Logout
   const handleLogout = () => {
-    // Clear token from localStorage
     localStorage.removeItem("carrental_app_token");
     localStorage.removeItem("user_email");
     localStorage.removeItem("user_role");
@@ -66,9 +65,8 @@ function Dashboard() {
     navigate("/");
   };
 
-  // Handle Book Now button click to route to /booking
   const handleBooking = () => {
-    navigate("/booking"); // Navigate to the booking page
+    navigate("/booking");
   };
 
   const handleDelete = async (bookingId) => {
@@ -77,12 +75,13 @@ function Dashboard() {
       return;
     }
     try {
-      const response = await axios.delete(`https://rental-app-node.onrender.com/booking/cancel`, {
+      const response = await axios.delete(`${BASE_URL}/booking/cancel`, {
         params: { bookingId },
       });
       if (response.status === 200) {
         alert("Booking cancelled successfully!");
-        setBooking(null); 
+        //setBooking(null);
+        setBooking((prev) => prev.filter((b) => b.bookingId !== bookingId));
       }
     } catch (err) {
       console.error("Error deleting vehicle:", err);
@@ -126,32 +125,41 @@ function Dashboard() {
           </button>
         </div>
       </motion.div>
-      {/* Booking Section - After motion.div */}
+      
       {booking && (
         <div className="w-[80%] mx-auto bg-white p-4 rounded-lg shadow-lg my-5 flex flex-col items-center">
-          <h2 className="text-2xl font-bold pb-4">Your Upcoming Booking</h2>
+          <h2 className="text-2xl font-bold pb-4 text-center">
+            Your Upcoming Bookings
+          </h2>
           <div className=" py-2 flex flex-col items-center">
-          <p>
-            <strong>Car:</strong> {booking.modelName}
-          </p>
-          <p>
-            <strong>Car Number:</strong> {booking.vehicleNumber}
-          </p>
-          <p>
-            <strong>Pickup Date:</strong>{" "}
-            {new Date(booking.rentalDate).toLocaleDateString()}
-          </p>
-          <p>
-            <strong>Drop-off Date:</strong>{" "}
-            {new Date(booking.returnDate).toLocaleDateString()}
-          </p>
+            {booking.map((booking) => (
+              <div
+                key={booking.bookingId}
+                className=" py-2 flex flex-col items-center"
+              >
+                <p>
+                  <strong>Car:</strong> {booking.modelName}
+                </p>
+                <p>
+                  <strong>Car Number:</strong> {booking.vehicleNumber}
+                </p>
+                <p>
+                  <strong>Pickup Date:</strong>{" "}
+                  {new Date(booking.rentalDate).toLocaleDateString()}
+                </p>
+                <p>
+                  <strong>Drop-off Date:</strong>{" "}
+                  {new Date(booking.returnDate).toLocaleDateString()}
+                </p>
+                <button
+                  onClick={() => handleDelete(booking.bookingId)}
+                  className="mt-3 px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
+                >
+                  Cancel Booking
+                </button>
+              </div>
+            ))}
           </div>
-          <button
-            onClick={() => handleDelete(booking.bookingId)}
-            className="px-4 py-1 bg-red-500 text-white rounded-md hover:bg-red-600 cursor-pointer"
-          >
-            Cancel Booking
-          </button>
         </div>
       )}
 
